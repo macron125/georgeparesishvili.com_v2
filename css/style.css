@@ -24,8 +24,8 @@ Table of contents
 :root {
     --font-color1:rgba(245, 234, 233, 0.5);
     --font-color2: #FF1100;
-    --letter-spacing-selected: 0.455em;
-    --letter-spacing-deselected: 0.25em;
+    --letter-spacing-wake: 0.455em;
+    --letter-spacing-rest: 0.25em;
 }
 /* 3.0.0 - Reusables and global */
 
@@ -93,14 +93,21 @@ nav ul {
 
 nav ul li {
     margin-bottom: 30px;
-    letter-spacing: var(--letter-spacing-deselected);
+    letter-spacing: var(--letter-spacing-rest);
     font-weight: 200;
     font-size: 14px;
     transition: letter-spacing 0.2s ease-in-out;
 }
 
 nav ul li:hover {
-    letter-spacing: var(--letter-spacing-selected);
+    letter-spacing: var(--letter-spacing-wake);
+}
+
+nav ul li.selected {
+    letter-spacing: var(--letter-spacing-wake);
+}
+nav ul li.selected a{
+    color: var(--font-color2);
 }
 
 nav ul li a {
@@ -142,7 +149,7 @@ main section h2 {
     left: 743px;
     font-weight: 200;
     font-size: 14px;
-    letter-spacing: var(--letter-spacing-selected);
+    letter-spacing: var(--letter-spacing-wake);
     color: #F5EAE9;
 }
 /* 5.2.0 - About */
