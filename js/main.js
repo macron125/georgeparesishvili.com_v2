@@ -5,32 +5,33 @@ class CreateObserver {
 
     constructor(arr, options = {}, navArr) {
         this.arr = arr;
-        this.options = {...options};
+        this.options = { ...options };
         this.navArr = navArr;
     }
 
     checkNav(navArr, current) {
         for (let el of navArr) {
             el.classList.remove('selected');
-            if(el.children[0].getAttribute('href') == current) {
+            if (el.children[0].getAttribute('href') == current) {
                 el.classList.add('selected');
             }
         }
     }
 
     callback(entries, observer) {
-        for(let entry of entries) {
-            if(entry.isIntersecting) {
+        for (let entry of entries) {
+            if (entry.isIntersecting) {
                 this.current = "#" + entry.target.getAttribute('id');
                 this.checkNav(this.navArr, this.current);
+                entry.target.classList.add('visible');
             }
         }
     }
 
     launch() {
         this.observer = new IntersectionObserver(this.cb, this.options);
-        if(typeof this.arr === 'object') {
-            for(let el of this.arr) {
+        if (typeof this.arr === 'object') {
+            for (let el of this.arr) {
                 this.observer.observe(el);
             }
         } else {
@@ -41,41 +42,27 @@ class CreateObserver {
 
 let createObserver = new CreateObserver(
     document.querySelectorAll('section'),
-    {root: null, rootMargin: "0px", threshold: [0.4]},
+    { root: null, rootMargin: "0px", threshold: [0.4] },
     document.querySelectorAll('.gn-list-item'),
 )
 
 createObserver.launch()
 
-// class CreateObserver {
+class Navigation {
+    constructor(body, btn) {
+        this.btn = btn;
+        this.body = body;
+    }
 
-//     current = '';
-//     cb = this.callback.bind(this);
+    listenClick() {
+        this.btn.addEventListener('click', () => {
+            this.body.classList.toggle('open');
+        })
+    }
+}
 
-//     constructor(arr, options = {}) {
-//         this.arr = arr;
-//         this.options = {...options}
-//     }
-
-//     callback(entries, observer) {
-//         for(let entry of entries) {
-//             if(entry.isIntersecting) {
-//                 this.current = '#' + entry.target.getAttribute('id');
-//             }
-//         }
-//     }
-
-//     launch() {
-//         this.observer = new IntersectionObserver(this.cb, this.options);
-//         for(let el of this.arr) { //Just in case its not an arr
-//             this.observer.observe(el);
-//         }
-//     }
-// }
-
-// let createObserver = new CreateObserver(
-//     document.querySelectorAll('section'),
-//     {root: null, rootMargin: "0px", threshold: [0.4]},
-// )
-
-// createObserver.launch()
+let nav = new Navigation(
+    document.body,
+    document.querySelector('.gn-ham')
+)
+nav.listenClick();
