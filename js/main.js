@@ -57,7 +57,12 @@ class Navigation {
     listenClick() {
         this.btn.addEventListener('click', () => {
             this.body.classList.toggle('open');
+            this.fixBody(this.body);
         })
+    }
+
+    fixBody(body) {
+        body.classList.contains('open') ? body.style.overflow = 'hidden' : body.style.removeProperty('overflow');
     }
 }
 
@@ -66,3 +71,5 @@ let nav = new Navigation(
     document.querySelector('.gn-ham')
 )
 nav.listenClick();
+
+console.log()

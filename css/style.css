@@ -68,13 +68,15 @@ p {
     width: 100%;
 }
 /* 4.0.0 - Header */
-header{z-index: 99999; position: fixed;}
+header{
+    z-index: 99999; 
+    position: fixed;
+}
 /* 4.1.0 - Logo */
 
 #logo {
-    display: none;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     position: absolute;
     top: 20px;
     left: 40px;
@@ -177,6 +179,13 @@ nav ul li a {
 }
 
 @media screen and (max-width: 1050px) {
+
+    header {
+        height: 100px;
+        width: 100%;
+        background-color: var(--background-color);
+        box-shadow: 0 1px 10px 2px black;
+    }
     .gn-ham {
         display: flex;
         z-index: 999999;
