@@ -1,3 +1,5 @@
+// import anime from './animejs/lib/anime.es.json'
+
 class CreateObserver {
     obsever;
     current = '';
@@ -12,9 +14,8 @@ class CreateObserver {
     checkNav(navArr, current) {
         for (let el of navArr) {
             el.classList.remove('selected');
-            if (el.children[0].getAttribute('href') == current) {
+            if (el.children[0].getAttribute('href') == current) 
                 el.classList.add('selected');
-            }
         }
     }
 
@@ -49,7 +50,7 @@ let createObserver = new CreateObserver(
 createObserver.launch()
 
 class Navigation {
-    constructor(body, btn) {
+    constructor(btn, body = document.body) {
         this.btn = btn;
         this.body = body;
     }
@@ -67,9 +68,44 @@ class Navigation {
 }
 
 let nav = new Navigation(
-    document.body,
-    document.querySelector('.gn-ham')
+    document.querySelector('.gn-ham'),
 )
 nav.listenClick();
 
-console.log()
+
+class AgeCalculator {
+    _age = 0;
+    today = new Date(Date.now());
+    birthday;
+
+    constructor(birthdate = []) {
+        [this.year, this.month, this.day] = birthdate;
+    }
+
+    set age(value) {
+        if(value < 0) {
+            throw new Error("Age value below 0")
+        } else {
+            this._age = value;
+        }
+    }
+
+    get age() {
+        this.birthday = new Date(this.year, this.month - 1, this.day);
+        return this.calcAge(this.birthday, this.today);
+    }
+
+    calcAge(birthdate, today) {
+        let result = today.getFullYear() - birthdate.getFullYear();
+        if(today.getMonth() > birthdate.getMonth() && today.getDate() > birthdate.getDate()) {
+            return result;
+        } else {
+            return result - 1;
+        }
+    }
+}
+
+let ageCalc = new AgeCalculator([1995, 9, 10]);
+
+let ageEl = document.querySelector("#age span");
+ageEl.textContent = ageCalc.age

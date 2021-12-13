@@ -36,7 +36,10 @@ Table of contents
     padding: 0;
     box-sizing: border-box;
 }
-html {scroll-behavior: smooth;}
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}
 div, p, a, li, h1, h2, h3, h4, h5, h6 {
     font-family: Montserrat;
 }
@@ -66,6 +69,7 @@ p {
 .sect-container {
     max-width: 640px;
     width: 100%;
+    padding: 20px;
 }
 /* 4.0.0 - Header */
 header{
@@ -75,11 +79,13 @@ header{
 /* 4.1.0 - Logo */
 
 #logo {
-    width: 50px;
-    height: 50px;
+    width: 58px;
+    height: 58px;
     position: absolute;
     top: 20px;
-    left: 40px;
+    left: 67px;
+    z-index: 9999999;
+    /* transform: translateX(-100%); */
 }
 
 /* 4.2.0 - Hamburger */
@@ -185,6 +191,14 @@ nav ul li a {
         width: 100%;
         background-color: var(--background-color);
         box-shadow: 0 1px 10px 2px black;
+        transition: 0.3s ease;
+    }
+    body.open header {
+        background-color: unset;
+        box-shadow: unset;
+    }
+    #logo {
+        left:40px;
     }
     .gn-ham {
         display: flex;
@@ -201,7 +215,7 @@ nav ul li a {
         padding-top: 100px;
         padding-right: 50px;
         max-width: 300px;
-        width: 50%;
+        width: 100%;
         height: auto;
         background-color: #251f27;
     }
@@ -216,6 +230,23 @@ nav ul li a {
     }
 }
 
+@media screen and (max-width: 420px) {
+
+    #logo {
+        left: 134x;
+    }
+    nav {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    nav {
+        max-width: unset;
+        width: 100%;
+    };
+}
+
 /* 5.0.0 - Main */
 main {
     min-height: 100vh;
@@ -223,15 +254,16 @@ main {
     transition: 0.3s ease;
 }
 main section {
-    min-height: 610px;
+    min-height: 700px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: relative;
     visibility: hidden;
     opacity: 0;
     transform: translateY(50px);
-    transition: 1s ease;
+    transition: 0.5s ease;
+    padding-top: 100px;
 }
 
 main section.visible {
@@ -243,11 +275,13 @@ main section.visible {
 main section h2 {
     text-align: center;
 }
+
 /* 5.1.0 - Intro */
 #intro {
     min-height: 100vh;
     height: 100vh;
     justify-content: flex-start;
+    align-items: center;
 }
 
 #intro .intro-content {
@@ -282,7 +316,10 @@ main section h2 {
 
 @media screen and (max-width: 1150px) {
     #intro .intro-content {
-        width: 525px;
+        width: 700px;
+    }
+    #intro h1 {
+        font-size: 58px;
     }
 }
 
@@ -293,10 +330,15 @@ main section h2 {
         align-items: flex-start;
     }
     #intro h1 {
-        font-size: 40px;
+        font-size: 45px;
     }
     #intro h3 {
         font-size: 10px;
+    }
+}
+@media screen and (max-width: 350px) {
+    #intro h1 {
+        font-size: 40px;
     }
 }
 
