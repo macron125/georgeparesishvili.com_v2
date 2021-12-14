@@ -25,6 +25,12 @@ class CreateObserver {
                 this.current = "#" + entry.target.getAttribute('id');
                 this.checkNav(this.navArr, this.current);
                 entry.target.classList.add('visible');
+                if(history.pushState) {
+                    history.pushState(null, null, this.current);
+                }
+                else {
+                    location.hash = this.current;
+                }
             }
         }
     }
@@ -109,3 +115,17 @@ let ageCalc = new AgeCalculator([1995, 9, 10]);
 
 let ageEl = document.querySelector("#age span");
 ageEl.textContent = ageCalc.age
+
+
+class TableGenerator {
+    constructor(){}
+}
+
+let accordionRows = Array.from(accordion.rows).slice(1);
+
+for(let tr of accordionRows) {
+	tr.addEventListener('click', (x) => {
+        console.log(tr)
+        tr.classList.toggle('collapse');
+  })
+}

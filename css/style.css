@@ -72,6 +72,19 @@ p {
     width: 100%;
     padding: 20px;
 }
+
+.sect5-container {
+    max-width: 1000px;
+}
+
+table {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+}
+th {
+    width: 300px;
+}
 /* 4.0.0 - Header */
 header{
     z-index: 99999; 
@@ -255,22 +268,23 @@ main {
     transition: 0.3s ease;
 }
 main section {
-    min-height: 700px;
+    /* min-height: 700px; */
+    min-height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     position: relative;
     visibility: hidden;
     opacity: 0;
-    transform: translateY(50px);
-    transition: 0.5s ease;
+    /* transform: translateY(50px); */
+    /* transition: 0.5s ease; */
     padding-top: 100px;
 }
 
 main section.visible {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0);
+    /* transform: translateY(0); */
 }
 
 main section h2 {
@@ -360,6 +374,47 @@ main section h2 {
 /* 5.3.0 - Projects */
 /* 5.4.0 - Skills */
 /* 5.5.0 - Experience */
+
+td {
+    /* border: 1px solid white; */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.accordion {
+    margin-top: 100px;
+    cursor: pointer;
+}
+
+.accordion-head {
+    height: 73px;
+    background-color: rgba(245, 234, 233, 0.025);
+    color: rgba(245, 234, 233, 0.57);
+    font-size: 18px;
+}
+
+.accordion-section {
+    height: 43px;
+    background-color: rgb(245, 234, 233, 0.05);
+    font-size: 14px;
+    color: var(--font-color3);
+    font-weight: bold;
+}
+
+.accordion-body {
+    height: 225px;
+    /* display: none; */
+    background-color: rgba(245, 234, 233, 0.1);
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.accordion tr.collapsed .accordion-body{
+    display: initial;
+}
+
 /* 5.6.0 - Contact */
 
 #contact-form {
